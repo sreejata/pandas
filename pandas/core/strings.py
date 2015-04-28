@@ -633,10 +633,11 @@ def str_split(arr, pat=None, n=None, return_type='series'):
     pat : string, default None
         String or regular expression to split on. If None, splits on whitespace
     n : int, default None (all)
-    return_type : {'same', 'expand'}, default 'series'
-        If expand, returns a DataFrame (elements are strings)
-        If series, index or same, returns the same type as the original object
+    return_type : {'same', 'expand'}, default 'same'
+        If 'expand', returns a DataFrame (elements are strings).
+        If 'same', returns the same type as the original object,
         (elements are lists of strings).
+        Deprecated: return_types 'series', 'index', 'frame' are now deprecated. 
 
     Notes
     -----
@@ -651,7 +652,7 @@ def str_split(arr, pat=None, n=None, return_type='series'):
     from pandas.core.index import Index
 
     if return_type not in ('series', 'index', 'frame', 'same', 'expand'):
-        raise ValueError("return_type must be {'series', 'index', 'frame', 'same', 'expand'}")
+        raise ValueError("return_type must be {'same', 'expand'}")
     if return_type in ('frame', 'expand')  and isinstance(arr, Index):
         raise ValueError("return_type='frame' is not supported for string "
                          "methods on Index")
